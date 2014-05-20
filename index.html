@@ -92,101 +92,10 @@
 		</div>
 		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-		<script>
-		$(function () {
-			
-			// feature detect
-			var supportsRequired = 'required' in document.createElement('input')
-			
-			// loop through required attributes
-			$('[required]').each(function () {
-			
-				// if 'required' isn't supported
-				if (!supportsRequired) {
-				
-					// this
-					var self = $(this)
-				
-					// swap attribute for class
-					self.removeAttr('required').addClass('required')
-					
-					// append an error message
-					self.parent().append('<span class="form-error">Required</span>')
-					
-				}
-				
-			})
-			
-			// submit the form
-			$('.form').on('submit', function (e) {
-			
-				// loop through class name required
-				$('.required').each(function () {
-				
-					// this
-					var self = $(this)
-					
-					// check shorthand if statement for input[type] detection
-					var checked = (self.is(':checkbox') || self.is(':radio')) 
-					? self.is(':not(:checked)') && $('input[name=' + self.attr('name') + ']:checked').length === 0 
-					: false
-					
-					// run the empty/not:checked test
-					if (self.val() === '' || checked) {
-							
-						// show error if the values are empty still (or re-emptied)
-						// this will fire after it's already been checked once
-						self.siblings('.form-error').show()
-						
-						// stop form submitting
-						e.preventDefault()
-					
-					// if it's passed the check
-					} else {
-					
-						// hide the error
-						self.siblings('.form-error').hide()
-						
-					}
-					
-				})
-				
-				// all other form submit handlers here
-			
-			})
-			
-			// key change on all form inputs
-			$('input, textarea', '.form').on('blur change', function () {
-			
-				// this
-				var self = $(this)
-					
-				// check shorthand if statement for input[type] detection
-				var checked = (self.is(':checkbox') || self.is(':radio')) 
-				? self.is(':not(:checked)') && $('input[name=' + self.attr('name') + ']:checked').length === 0 
-				: false
-				
-				// if empty on change, i.e. if data is removed
-				if (self.val() === '' || checked) {
-				
-					// show/keep the error in view
-					self.siblings('.form-error').show()
-				
-				// if there's a value or checked
-				} else {
-				
-					// hide the error
-					self.siblings('.form-error').hide()
-					
-				}
-				
-			})
-		
-		})
-		</script>
+		<script> if(!window.jQuery) document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>');</script>
+		<script src="js/html5-fallback.js"></script>
 	
-		<!-- Demo Analytics -->
+		<!-- Demo Analytics TODO remove, if todd's license allows it -->
 		<script>
 			var _gaq=[['_setAccount','UA-20440416-10'],['_trackPageview']];
 			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

@@ -1,0 +1,8 @@
+2014-05-20  Chris Thomas  <firesburnsmup@gmail.com>
+	
+	* Initial fork
+	* ChangeLog added
+	* README.md :
+		* Change name
+		* add additional description for planned functionality
+	* move relevant JS from index.html to js/html5-fallback.js
