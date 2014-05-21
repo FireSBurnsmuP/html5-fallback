@@ -6,3 +6,6 @@
 		* Change name
 		* add additional description for planned functionality
 	* move relevant JS from index.html to js/html5-fallback.js
+
+    * placeholder fallback now implemented, with options
+    * README re-formatted and being treated like documentation on how to use the fallback script.
