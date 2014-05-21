@@ -359,10 +359,10 @@ As a whole, I'll go with the [MIT License](http://opensource.org/licenses/MIT) a
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 > THE SOFTWARE.
 
-The portions of the software relating to required attributes are (C) 2013 Todd Motto,
-and distributed under an MIT License. [Click Here](http://toddmotto.com/licensing)
-to view his specific licensing terms, otherwise look below for an enclosed
-version of the license:
+The portions of the software relating to required attributes, as well as the
+index.html and .css files are (C) 2013 Todd Motto, and distributed under the
+MIT License. [Click Here](http://toddmotto.com/licensing) to view his specific
+licensing terms, otherwise look below for an enclosed version of the license:
 
 > The MIT License (MIT)
 >
