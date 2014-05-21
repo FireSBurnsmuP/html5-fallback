@@ -44,254 +44,279 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 
 **Note:** This was primarily tested on IE7 (using F12 in IE11), but should work for anything past IE4
 
-* `placeholder` attribute handling:
-	* adding the placeholder to the element's `title` attribute:
-		* all of the following data atributes use the standard prefix.
-		* **"-ph-title-use"** - should I use the title attribute for placeholders?
-		  
-		  This attribute can be used to disable the default behavior of using the
-		  element's `title` attribute when finding new places for the placeholder
-		  information.
+### Placeholder attribute handling:
 
-			E.g.:
+Below I'm listing the suffixes of the data attributes which pertain to the
+placeholder functionality and its options, all of which have the prefix:
+'data-fb-ph-'. That is, they all use the standard prefix of 'data-fb-'
+with the prefix 'ph-' for "placeholder" added to it.
 
-			```
-			<input placeholder="I'm a teapot" data-fb-title-use="false"
-				title="You've attempted to brew coffee in a teapot."/>
-			```
+#### Adding the placeholder to the element's `title` attribute:
 
-			will result in:
+#####**"-title-use"** - should I use the title attribute for placeholders?
+  
+  This attribute can be used to disable the default behavior of using the
+  element's `title` attribute when finding new places for the placeholder
+  information.
 
-			```
-			<input class="placeholder"
-				title="You've attempted to brew coffee in a teapot"><br />
-			<span class="form-placeholder">I'm a teapot</span>
-			```
+	E.g.:
 
-			if the browser doesn't support `placeholder`
+	```
+	<input placeholder="I'm a teapot" data-fb-ph-title-use="false"
+		title="You've attempted to brew coffee in a teapot."/>
+	```
 
-			If you want to use the title, you may either omit `data-fb-title-use`
-			or specify `data-fb-title-use="true|1"`.
-		* `data-fb-ph-title-replace="true|1"` will replace the form element's title instead of appending it in parantheses.
+	will result in:
 
-			E.g.:
+	```
+	<input class="placeholder"
+		title="You've attempted to brew coffee in a teapot"><br />
+	<span class="form-placeholder">I'm a teapot</span>
+	```
 
-			```
-			<input placeholder="I'm a teapot" data-fb-title-replace="true"
-				title="You've attempted to brew coffee in a teapot."/>
-			```
+	if the browser doesn't support `placeholder`
 
-			will result in:
+	If you want to use the title, you may either omit `data-fb-ph-title-use`
+	or specify `data-fb-ph-title-use="true|1"`.
 
-			```
-			<input class="placeholder" title="I'm a teapot">
-			```
+	**Note:** If "title-use" is set to false, none of the title-related attributes
+	get used at all. You can specify them, but they will simply not be used.
+##### **"-title-replace"** - should I replace the existing title attribute, if it exists, or append to it?
 
-	* adding the placeholder as a description in a seperate DOM element:
-		* `data-fb-ph-desc-use="false|0"` will force no addition of a placeholder-based description.
+	In the event that an element which already has a title is detected, the default functionality is
+	`data-fb-ph-title-replace="false"`, which will append the placeholder text to the existing `title`
+	attribute, in parentheses.
 
-			E.g.:
+	`data-fb-ph-title-replace="true|1"` will replace the form element's title instead of appending it in parantheses.
 
-			```
-			<input placeholder="I'm a teapot" data-fb-desc-use="false"/>
-			```
+	E.g.:
 
-			will result in:
+	```
+	<input placeholder="I'm a teapot" data-fb-ph-title-replace="true"
+		title="You've attempted to brew coffee in a teapot."/>
+	```
 
-			```
-			<input class="placeholder" title="I'm a teapot">
-			```
+	will result in:
 
-			with no additional elements added to the dom.
-			
-		* `data-fb-ph-desc-format` is used to specify what type of DOM-element to put it in
+	```
+	<input class="placeholder" data-fb-ph-title-replace="true"
+		title="I'm a teapot">
+	```
 
-			####Currently Supported Values:
-			* **"span"** (default)
+####Adding the placeholder as a description in a seperate DOM element:
 
-				E.g.:
+#####**"-desc-use" - Should I add a description element that contains the placeholder's text?
+  
+This attribute can be used to disable the default behavior of adding an extra
+element to the DOM which contains the placeholder's text information.
 
-				```
-				<input placeholder="I'm a teapot"
-					title="You've attempted to brew coffee in a teapot."/>
-				```
+`data-fb-ph-desc-use="false|0"` will force no addition of a placeholder-based description.
 
-				will result in:
+E.g.:
 
-				```
-				<input class="placeholder"
-					title="You've attempted to brew coffee in a teapot"><br />
-				<span class="form-placeholder">I'm a teapot</span>
-				```
+```
+<input placeholder="I'm a teapot" data-fb-ph-desc-use="false"/>
+```
 
-				if the browser doesn't support `placeholder`.
-			* **"label"**
+will result in:
 
-				E.g.:
+```
+<input class="placeholder" title="I'm a teapot" data-fb-ph-desc-use="false">
+```
 
-				```
-				<input id="inputID" placeholder="I'm a teapot"
-					data-fb-ph-desc-format="label"/>
-				```
+with no additional elements added to the dom.
+	
+#####**"-desc-format"** - What kind of DOM element should the description be placed in?
 
-				will result in:
+`data-fb-ph-desc-format` is used to specify what type of DOM-element to put it in
 
-				```
-				<input id="inputID" class="placeholder" title="I'm a teapot"
-					 data-fb-ph-desc-format="label"><br />
-				<label for="inputID" class="form-placeholder">I'm a teapot</label>
-				```
+######Currently Supported Values:
+* **"span"** (default)
 
-				if the browser doesn't support `placeholder`.
-				
-				**Note:** make sure your form element has an id or name attribute,
-				so the label can have its `for` attribute set properly. 
-			* **"div"**
+	E.g.:
 
-				E.g.:
+	```
+	<input placeholder="I'm a teapot"
+		title="You've attempted to brew coffee in a teapot."/>
+	```
 
-				```
-				<input placeholder="I'm a teapot" data-fb-ph-desc-format="div"/>
-				```
+	will result in:
 
-				will result in:
+	```
+	<input class="placeholder"
+		title="You've attempted to brew coffee in a teapot"><br />
+	<span class="form-placeholder">I'm a teapot</span>
+	```
 
-				```
-				<input class="placeholder" title="I'm a teapot" data-fb-ph-desc-format="div">
-				<div class="form-placeholder">I'm a teapot</div>
-				```
+	if the browser doesn't support `placeholder`.
+* **"label"**
 
-				if the browser doesn't support `placeholder`.
-			* **"p"**
+	E.g.:
 
-				E.g.:
+	```
+	<input id="inputID" placeholder="I'm a teapot"
+		data-fb-ph-desc-format="label"/>
+	```
 
-				```
-				<input placeholder="I'm a teapot" data-fb-ph-desc-format="p"
+	will result in:
+
+	```
+	<input id="inputID" class="placeholder" title="I'm a teapot"
+		 data-fb-ph-desc-format="label"><br />
+	<label for="inputID" class="form-placeholder">I'm a teapot</label>
+	```
+
+	if the browser doesn't support `placeholder`.
+	
+	**Note:** make sure your form element has an id or name attribute,
+	so the label can have its `for` attribute set properly. 
+* **"div"**
+
+	E.g.:
+
+	```
+	<input placeholder="I'm a teapot" data-fb-ph-desc-format="div"/>
+	```
+
+	will result in:
+
+	```
+	<input class="placeholder" title="I'm a teapot" data-fb-ph-desc-format="div">
+	<div class="form-placeholder">I'm a teapot</div>
+	```
+
+	if the browser doesn't support `placeholder`.
+* **"p"**
+
+	E.g.:
+
+	```
+	<input placeholder="I'm a teapot" data-fb-ph-desc-format="p"
+		title="You've attempted to brew coffee in a teapot." />
+	```
+
+	will result in:
+
+	```
+	<input class="placeholder"
+		title="You've attempted to brew coffee in a teapot (I'm a teapot)">
+	<p class="form-placeholder">I'm a teapot</p>
+	```
+
+	if the browser doesn't support `placeholder`.
+* **"tr"**
+
+	E.g.:
+
+	```
+	<table>
+		<tr>
+			<td>
+				<input placeholder="I'm a teapot" data-fb-ph-desc-format="tr"
 					title="You've attempted to brew coffee in a teapot." />
-				```
+			</td>
+		<tr>
+	</table>
+	```
 
-				will result in:
+	will result in:
 
-				```
-				<input class="placeholder"
-					title="You've attempted to brew coffee in a teapot (I'm a teapot)">
-				<p class="form-placeholder">I'm a teapot</p>
-				```
+	```
+	<table>
+		<tr>
+			<td>
+				<input class="placeholder" data-fb-ph-desc-format="tr"
+					title="You've attempted to brew coffee in a teapot. (I'm a teapot)" />
+			</td>
+		<tr>
+		<tr class="form-placeholder">
+			<td>
+				I'm a teapot
+			</td>
+		</tr>
+	</table>
+	```
 
-				if the browser doesn't support `placeholder`.
-			* **"tr"**
+	if the browser doesn't support `placeholder`.
 
-				E.g.:
+	**Note:** this probably won't behave the way you want right now.
+	I didn't take the time to devise a way of determining _where_ in
+	the table you want it, or how many columns it should span, etc.
 
-				```
-				<table>
-					<tr>
-						<td>
-							<input placeholder="I'm a teapot" data-fb-ph-desc-format="tr"
-								title="You've attempted to brew coffee in a teapot." />
-						</td>
-					<tr>
-				</table>
-				```
+	You probably want to use **"td"** instead, and just adjust your
+	table to possibly have one more cell per row.
 
-				will result in:
+	I may fix this later on, but it's not high on my priority list.
+* **"td"**
 
-				```
-				<table>
-					<tr>
-						<td>
-							<input class="placeholder" data-fb-ph-desc-format="tr"
-								title="You've attempted to brew coffee in a teapot. (I'm a teapot)" />
-						</td>
-					<tr>
-					<tr class="form-placeholder">
-						<td>
-							I'm a teapot
-						</td>
-					</tr>
-				</table>
-				```
+	E.g.:
 
-				if the browser doesn't support `placeholder`.
+	```
+	<table>
+		<tr>
+			<td>
+				<input placeholder="I'm a teapot" data-fb-ph-desc-format="td"
+					title="You've attempted to brew coffee in a teapot." />
+			</td>
+		<tr>
+	</table>
+	```
 
-				**Note:** this probably won't behave the way you want right now.
-				I didn't take the time to devise a way of determining _where_ in
-				the table you want it, or how many columns it should span, etc.
+	will result in:
 
-				You probably want to use **"td"** instead, and just adjust your
-				table to possibly have one more cell per row.
+	```
+	<table>
+		<tr>
+			<td>
+				<input class="placeholder" data-fb-ph-desc-format="td"
+					title="You've attempted to brew coffee in a teapot. (I'm a teapot)"/>
+			</td>
+			<td class="form-placeholder">
+				I'm a teapot
+			</td>
+		</tr>
+	</table>
+	```
 
-				I may fix this later on, but it's not high on my priority list.
-			* **"td"**
+	if the browser doesn't support `placeholder`.
 
-				E.g.:
+######Notes:
+* All of these objects get the class ".form-placeholder" added to them.
+* I may change the implementation so that any type of element is supported in the future,
+	but that isn't high on my priority list. This list of elements will likely be all I ever need.
 
-				```
-				<table>
-					<tr>
-						<td>
-							<input placeholder="I'm a teapot" data-fb-ph-desc-format="td"
-								title="You've attempted to brew coffee in a teapot." />
-						</td>
-					<tr>
-				</table>
-				```
+	Feel free to ask me about it, though, if you want the functionality added sooner.
+	Or, of course, you could fork the repo and do it yourself, and just submit the pull request
+	when you're done ;) I'd appreciate that, as well.
 
-				will result in:
+#####**"-desc-location" - Where should I put the description element?
 
-				```
-				<table>
-					<tr>
-						<td>
-							<input class="placeholder" data-fb-ph-desc-format="td"
-								title="You've attempted to brew coffee in a teapot. (I'm a teapot)"/>
-						</td>
-						<td class="form-placeholder">
-							I'm a teapot
-						</td>
-					</tr>
-				</table>
-				```
+######Currently Supported Values:
+* **"above"** - Display the created element above this one, on a seperate line.
+	* appends a `<br />` after the created element to ensure
+		that it is above the form element.
+	* designed for inline-elements (like `<label>` and `<span>`)
+	* gets treated like **"before"** for block-level elements (see Note below).
+* **"before"** - Display the created element before this one, inline.
+	* the created element is inserted directly before the form element.
+* **"after"** - Display the created element after this one, inline.
+	* the created element is inserted directly after the form element.
+* **"below"** (default) - Display the created element below this one, on a seperate line.
+	* prepends a `<br />` before the created element to ensure
+		that it is below the form element.
+	* designed for inline-elements (like `<label>` and `<span>`)
+	* gets treated like **"after"** for block-level elements (see Note below).
+####Note:
+* block-level elements (`<div>`, `<p>`), and table-elements (`<tr>`, `<td>`)
+	specified with `data-fb-ph-desc-format` can only be displayed 
+	with `data-fb-ph-desc-location="after|before"`.
 
-				if the browser doesn't support `placeholder`.
+	I only added the extra `<br />` capability for inline-elements,
+	as using styling is a better approach to doing this with block-elements.
 
-			####Note:
-			* All of these objects get the class ".form-placeholder" added to them.
-			* I may change the implementation so that any type of element is supported in the future,
-				but that isn't high on my priority list. This list of elements will likely be all I ever need.
-
-				Feel free to ask me about it, though, if you want the functionality added sooner.
-				Or, of course, you could fork the repo and do it yourself, and just submit the pull request
-				when you're done ;) I'd appreciate that, as well.
-
-		* `data-fb-ph-desc-location` is used to configure where to put it
-			####Currently Supported Values:
-			* **"above"** - Display the created element above this one, on a seperate line.
-				* appends a `<br />` after the created element to ensure
-					that it is above the form element.
-				* designed for inline-elements (like `<label>` and `<span>`)
-				* gets treated like **"before"** for block-level elements (see Note below).
-			* **"before"** - Display the created element before this one, inline.
-				* the created element is inserted directly before the form element.
-			* **"after"** - Display the created element after this one, inline.
-				* the created element is inserted directly after the form element.
-			* **"below"** (default) - Display the created element below this one, on a seperate line.
-				* prepends a `<br />` before the created element to ensure
-					that it is below the form element.
-				* designed for inline-elements (like `<label>` and `<span>`)
-				* gets treated like **"after"** for block-level elements (see Note below).
-			####Note:
-			* block-level elements (`<div>`, `<p>`), and table-elements (`<tr>`, `<td>`)
-				specified with `data-fb-ph-desc-format` can only be displayed 
-				with `data-fb-ph-desc-location="after|before"`.
-
-				I only added the extra `<br />` capability for inline-elements,
-				as using styling is a better approach to doing this with block-elements.
-
-				Values are converted as follows:
-				* 'above' => 'before' 
-				* 'below' => 'after'
+	Values are converted as follows:
+	* 'above' => 'before' 
+	* 'below' => 'after'
 
 ###Development:
 I plan to keep developing this as I need it, but feel free to use it as you see fit.
