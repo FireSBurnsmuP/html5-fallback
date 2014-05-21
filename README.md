@@ -19,7 +19,7 @@ In its simplest form, you can just:
 5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
 6. (optional) Customize the classes therein to better fit your site's styling.
 
-## Currently supported attributes:
+###Currently supported attributes:
 * `required` attribute, with client-side validation and the addition of required messages next to required fields.
 	* this is still largely code from
 		[toddmotto's required-fallback](https://github.com/toddmotto/required-fallback),
@@ -27,47 +27,79 @@ In its simplest form, you can just:
 * `placeholder` attribute, which will configurably add `title` attributes and/or a caption above, before, after, or below the field
 	* By default, they are placed in the title attribute, (appended in parentheses if there already is one).
 
-Attributes currently planned:
+###Attributes currently planned:
 * No additional attributes currently planned, but I might think of something.
 	Feel free to contact me (I'm on GH pretty frequently) if you have ideas/requests.
 	No guarantees on quick implementations, but I can guarantee a quick response. ^_^
 
 ##Advanced Attributes and Configurations
+I make use of the custom html5 'data-' attribute system, which is x-browser compatable,
+and, with the use of jQuery, also works with older, non-html5 browsers.
+
+All the data attributes are just inserted in the page's html, and you can add these attributes to anything,
+but they'll only be used on form elements when the browser doesn't support the given HTML5 attribute.
+
+I prefix all this fallback system's data attributes with 'data-fb-' to keep from conflicting (hopefully) with other systems.
+This (obviously) stands for 'data-fallback' and should be easy enough to remember.
+
+**Note:** This was primarily tested on IE7 (using F12 in IE11), but should work for anything past IE4
+
 * `placeholder` attribute handling:
 	* adding the placeholder to the element's `title` attribute:
-		* `data-fb-ph-title-use="false|0"` disables this functionality altogether.
+		* all of the following data atributes use the standard prefix.
+		* **"-ph-title-use"** - should I use the title attribute for placeholders?
+		  
+		  This attribute can be used to disable the default behavior of using the
+		  element's `title` attribute when finding new places for the placeholder
+		  information.
+
 			E.g.:
 
-			```<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-use="false"/>```
+			```
+			<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-use="false"/>
+			```
 
 			will result in:
 
-			```<input class="placeholder" title="You've attempted to brew coffee in a teapot"><br />
-			<span class="form-placeholder">I'm a teapot</span>````
+			```
+			<input class="placeholder" title="You've attempted to brew coffee in a teapot"><br />
+			<span class="form-placeholder">I'm a teapot</span>
+			```
 
 			if the browser doesn't support `placeholder`
+
+			If you want to use the title, you may either omit `data-fb-title-use`
+			or specify `data-fb-title-use="true|1"`.
 		* `data-fb-ph-title-replace="true|1"` will replace the form element's title instead of appending it in parantheses.
 
 			E.g.:
 
-			```<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-replace="true"/>`
+			```
+			<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-replace="true"/>
+			```
 
 			will result in:
 
-			```<input class="placeholder" title="I'm a teapot">```
+			```
+			<input class="placeholder" title="I'm a teapot">
+			```
 
 	* adding the placeholder as a description in a seperate DOM element:
-			* `data-fb-ph-desc-use="false|0"` will force no addition of a placeholder-based description.
+		* `data-fb-ph-desc-use="false|0"` will force no addition of a placeholder-based description.
 
-				E.g.:
+			E.g.:
 
-				```<input placeholder="I'm a teapot" data-fb-desc-use="false"/>`
+			```
+			<input placeholder="I'm a teapot" data-fb-desc-use="false"/>
+			```
 
-				will result in:
+			will result in:
 
-				```<input class="placeholder" title="I'm a teapot">```
+			```
+			<input class="placeholder" title="I'm a teapot">
+			```
 
-				with no additional elements added to the dom.
+			with no additional elements added to the dom.
 			
 		* `data-fb-ph-desc-format` is used to specify what type of DOM-element to put it in
 
@@ -76,30 +108,140 @@ Attributes currently planned:
 
 				E.g.:
 
-				```<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot."/>```
+				```
+				<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot."/>
+				```
 
 				will result in:
 
-				```<input class="placeholder" title="You've attempted to brew coffee in a teapot"><br />
-				<span class="form-placeholder">I'm a teapot</span>````
+				```
+				<input class="placeholder" title="You've attempted to brew coffee in a teapot"><br />
+				<span class="form-placeholder">I'm a teapot</span>
+				```
+
+				if the browser doesn't support `placeholder`.
+			* **"label"**
+
+				E.g.:
+
+				```
+				<input id="inputID" placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="label"/>
+				```
+
+				will result in:
+
+				```
+				<input id="inputID" class="placeholder" title="You've attempted to brew coffee in a teapot (I'm a teapot)"><br />
+				<label for="inputID" class="form-placeholder">I'm a teapot</label>
+				```
+
+				if the browser doesn't support `placeholder`.
+				
+				**Note:** make sure your form element has an id or name attribute,
+				so the label can have its `for` attribute set properly. 
+			* **"div"**
+
+				E.g.:
+
+				```
+				<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="div"/>
+				```
+
+				will result in:
+
+				```
+				<input class="placeholder" title="You've attempted to brew coffee in a teapot (I'm a teapot)">
+				<div class="form-placeholder">I'm a teapot</div>
+				```
+
+				if the browser doesn't support `placeholder`.
+			* **"p"**
+
+				E.g.:
+
+				```
+				<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="p"/>
+				```
+
+				will result in:
+
+				```
+				<input class="placeholder" title="You've attempted to brew coffee in a teapot (I'm a teapot)">
+				<p class="form-placeholder">I'm a teapot</p>
+				```
+
+				if the browser doesn't support `placeholder`.
+			* **"tr"**
+
+				E.g.:
+
+				```
+				<table>
+					<tr>
+						<td>
+							<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="tr"/>
+						</td>
+					<tr>
+				</table>
+				```
+
+				will result in:
+
+				```
+				<table>
+					<tr>
+						<td>
+							<input class="placeholder" title="You've attempted to brew coffee in a teapot. (I'm a teapot)" data-fb-ph-desc-format="tr"/>
+						</td>
+					<tr>
+					<tr class="form-placeholder">
+						<td>
+							I'm a teapot
+						</td>
+					</tr>
+				</table>
+				```
 
 				if the browser doesn't support `placeholder`.
 
-			* **"label"**
-				* **Note:** make sure your form element has an id or name attribute,
-					so the label can have it's `for` attribute set properly.
-			* **"div"**
-			* **"p"**
-			* **"tr"**
-				* **Note:** this probably won't behave the way you want right now.
-					I didn't take the time to devise a way of determining _where_ in
-					the table you want it, or how many columns it should span, etc.
+				**Note:** this probably won't behave the way you want right now.
+				I didn't take the time to devise a way of determining _where_ in
+				the table you want it, or how many columns it should span, etc.
 
-					You probably want to use **"td"** instead, and just adjust your
-					table to possibly have one more cell per row.
+				You probably want to use **"td"** instead, and just adjust your
+				table to possibly have one more cell per row.
 
-					I may fix this later on, but it's not high on my priority list.
+				I may fix this later on, but it's not high on my priority list.
 			* **"td"**
+
+				E.g.:
+
+				```
+				<table>
+					<tr>
+						<td>
+							<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="td"/>
+						</td>
+					<tr>
+				</table>
+				```
+
+				will result in:
+
+				```
+				<table>
+					<tr>
+						<td>
+							<input class="placeholder" title="You've attempted to brew coffee in a teapot. (I'm a teapot)" data-fb-ph-desc-format="td"/>
+						</td>
+						<td class="form-placeholder">
+							I'm a teapot
+						</td>
+					</tr>
+				</table>
+				```
+
+				if the browser doesn't support `placeholder`.
 
 			####Note:
 			* All of these objects get the class ".form-placeholder" added to them.
