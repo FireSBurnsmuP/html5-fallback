@@ -24,7 +24,7 @@
 (function ($) {
 	$(function(){
 		// set to true to test on modern browsers
-		var testing = false;
+		var testing = true;
 
 		// feature detect
 		var supportsRequired = 'required' in document.createElement('input');
@@ -48,7 +48,9 @@
 				self.removeAttr('required').addClass('required');
 				
 				// append an error message
-				self.parent().append('<span class="form-error">Required</span>');	
+				self.parent().append('<span class="form-error">Required</span>');
+				// and hide it (don't require 'display:none' in the styling)
+				self.siblings('.form-error').hide();
 			});
 		
 			// submit the form

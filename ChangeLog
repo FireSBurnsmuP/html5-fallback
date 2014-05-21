@@ -17,8 +17,13 @@
 	* testing variable added
 	* more doc-work (it's pretty well done now.)
 	* TODOs for planned functionality
+
 	* More general coding in required
 		* select by tag `form` instead of class
 		* use selected form as context, so not all forms on page are validated
 			when another is submitted, only the submitted form.
+
+	* More generalization
+		* automagically hide created error messages, so `display:none;` doesn't
+			have to be specified in the css.
 
