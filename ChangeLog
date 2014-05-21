@@ -1,4 +1,4 @@
-2014-05-20  Chris Thomas  <firesburnsmup@gmail.com>
+2014-05-20  Chris Thomas  <thomas.chris.a@gmail.com>
 	
 	* Initial fork
 	* ChangeLog added
@@ -9,3 +9,16 @@
 
     * placeholder fallback now implemented, with options
     * README re-formatted and being treated like documentation on how to use the fallback script.
+
+2014-05-21  Chris Thomas  <thomas.chris.a@gmail.com>
+
+	* Bug fix with my jQuery compatability code
+	* Licenses added
+	* testing variable added
+	* more doc-work (it's pretty well done now.)
+	* TODOs for planned functionality
+	* More general coding in required
+		* select by tag `form` instead of class
+		* use selected form as context, so not all forms on page are validated
+			when another is submitted, only the submitted form.
+

@@ -16,22 +16,40 @@ This project contains a robust html5 attribute fallback system, using client-sid
     * By default, they are placed in the title attribute, (appended in parentheses if there already is one).
 
 ### Attributes currently planned: ###
-* No additional attributes currently planned, but I might think of something.
-    Feel free to contact me (I'm on GH pretty frequently) if you have ideas/requests.
-    No guarantees on quick implementations, but I can guarantee a quick response. ^_^
+* `min`/`max` fields, and other fields that get validated automatically by html5
+*
 
 ## How do I get started? ##
 In its simplest form, you can just:
 
-1. Download the `html5-fallback.js` script into your web application's directory structure
+1. Download the [html5-fallback.js](js/html5-fallback.js) script into your web application's directory structure
 2. Add `<script src="/path/to/js/html5-fallback.js"></script>` in your documents' `<head>`s
 3. You're done!
 
   _If you want,_ you can also:
-4. (optional) Download the `main.css` file into your web application's directory structure
-  * Using my file won't likely be of much help, although copying the relevant classes (see below) might be of some use.
-5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
-6. (optional) Customize the classes therein to better fit your site's styling.
+4. (optional) Customize the styling of elements added or modified by this system:
+    - Form Validation messages will all have the class `.form-error`
+    - Required form elements will have the class `.required`
+    - Added descriptions (to replace placeholders) will have the class `.form-placeholder`
+    - Any form element which had a placeholder will have te class `.placeholder`
+
+### Testing: ###
+If you want to test whether or not it's currently working, just open up
+[html5-fallback.js](js/html5-fallback.js) and edit the following line
+(on line # 27):
+
+```javascript
+// set to true to test on modern browsers
+var testing = false;
+```
+
+to say:
+
+```javascript
+// set to true to test on modern browsers
+var testing = true;
+```
+
 
 ## Advanced Attributes and Configurations ##
 I make use of the custom html5 'data-' attribute system, which is x-browser compatable,
@@ -48,10 +66,48 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 ### Required attribute handling: ###
 
 As stated earlier, this code has been largely left unchanged (as of now),
-but might get some configuration options and the like,
-if I ever get around to it.
+but might get some configuration options and the like, if I ever get around to it.
 
-For now:
+For now: here's what it does:
+
+Let's say you have:
+
+```html
+<form>
+    <div id="parent">
+        <input type="text" required />
+    </div>
+</form>
+```
+
+on your page somewhere. The form can contain as little or as much as you want.
+
+If the browser that's displaying the form doesn't know how to use the
+html5 `required` attribute, your input element will display as:
+
+
+```html
+<form>
+    <div id="parent">
+        <input type="text" class="required" />
+        <span class="form-error">Required</span>
+    </div>
+</form>
+```
+
+in the markdown. The javascript hides the "Required" message initially.
+
+Then, if you were to submit this form, it is automatically validated in
+client-side javascript. If any of the `<input required>`s on the page have
+not been filled out, they will display the `<span class="form-error">Required</span>`
+message until they are changed, and the form will not submit.
+
+If the user then fills out all the pages, they can successfully submit the form.
+
+#### Notes: ####
+* All of the validation message objects get the class ".form-error" added to them.
+* TODO Add config-attribute for the validation failure message
+* TODO Add automatic additions of asterixes, title usage, etc.
 
 ### Placeholder attribute handling: ###
 
@@ -316,7 +372,7 @@ with no additional elements added to the dom.
     * designed for inline-elements (like `<label>` and `<span>`)
     * gets treated like **"after"** for block-level elements (see Note below).
 
-#### Note: ####
+##### Note: #####
 * block-level elements (`<div>`, `<p>`), and table-elements (`<tr>`, `<td>`)
     specified with `data-fb-ph-desc-format` can only be displayed
     with `data-fb-ph-desc-location="after|before"`.
@@ -328,6 +384,12 @@ with no additional elements added to the dom.
     * 'above' => 'before'
     * 'below' => 'after'
 
+#### Notes: ####
+* All of the validation message objects get the class ".form-placeholder" added to them.
+* TODO Add javascript solution to mimic the placeholder functionality
+    - I'd like to actually replace the functionality if need-be, to keep make
+        my functionality just as robust as Todd's required functionality.
+
 ### Development: ###
 I plan to keep developing this as I need it, but feel free to use it as you see fit,
 subject to the license(s). Bug fixes might be coming soon, if I find any, otherwise,
@@ -335,11 +397,11 @@ consider it finished until I change this notice.
 
 ### Licensing: ###
 
-As a whole, I'll go with the [MIT License](http://opensource.org/licenses/MIT) as follows:
+As a whole, I release this under the [MIT License](http://opensource.org/licenses/MIT) as follows:
 
 > The MIT License (MIT)
 >
-> Copyright (c) 2014 Chris Thomas
+> Copyright (c) 2014 Chris Thomas <thomas.chris.a@gmail.com>
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
@@ -360,7 +422,7 @@ As a whole, I'll go with the [MIT License](http://opensource.org/licenses/MIT) a
 > THE SOFTWARE.
 
 The portions of the software relating to required attributes, as well as the
-index.html and .css files are (C) 2013 Todd Motto, and distributed under the
+index.html and .css files are (C) 2013 [Todd Motto](toddmotto.com), and distributed under the
 MIT License. [Click Here](http://toddmotto.com/licensing) to view his specific
 licensing terms, otherwise look below for an enclosed version of the license:
 
