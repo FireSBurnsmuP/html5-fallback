@@ -14,24 +14,24 @@ In its simplest form, you can just:
 2. Add `<script src="/path/to/js/html5-fallback.js"></script>` in your documents' `<head>`s
 3. You're done!
 
-If you want, you can also:
+  * *If you want, you can also:*
 
 4. (optional) Download the `main.css` file into your web application's directory structure
 5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
 6. (optional) Customize the classes therein to better fit your site's styling.
 
 ## Currently supported attributes:
-	* `required` attribute, with client-side validation and the addition of required messages next to required fields.
-		* this is still largely code from
-			[toddmotto's required-fallback](https://github.com/toddmotto/required-fallback),
-			but I've made some modifications for compatibility and code-standards (I use jshint)
-	* `placeholder` attribute, which will configurably add `title` attributes and/or a caption above, before, after, or below the field
-		* By default, they are placed in the title attribute, (appended in parentheses if there already is one).
+* `required` attribute, with client-side validation and the addition of required messages next to required fields.
+	* this is still largely code from
+		[toddmotto's required-fallback](https://github.com/toddmotto/required-fallback),
+		but I've made some modifications for compatibility and code-standards (I use jshint)
+* `placeholder` attribute, which will configurably add `title` attributes and/or a caption above, before, after, or below the field
+	* By default, they are placed in the title attribute, (appended in parentheses if there already is one).
 
 Attributes currently planned:
-	* No additional attributes currently planned, but I might think of something.
-		Feel free to contact me (I'm on GH pretty frequently) if you have ideas/requests.
-		No guarantees on quick implementations, but I can guarantee a quick response. ^_^
+* No additional attributes currently planned, but I might think of something.
+	Feel free to contact me (I'm on GH pretty frequently) if you have ideas/requests.
+	No guarantees on quick implementations, but I can guarantee a quick response. ^_^
 
 ##Advanced Attributes and Configurations
 * `placeholder` attribute handling:
