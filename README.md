@@ -55,53 +55,53 @@ with the prefix 'ph-' for "placeholder" added to it.
 
 #####**"-title-use"** - should I use the title attribute for placeholders?
   
-  This attribute can be used to disable the default behavior of using the
-  element's `title` attribute when finding new places for the placeholder
-  information.
+This attribute can be used to disable the default behavior of using the
+element's `title` attribute when finding new places for the placeholder
+information.
 
-	E.g.:
+E.g.:
 
-	```
-	<input placeholder="I'm a teapot" data-fb-ph-title-use="false"
-		title="You've attempted to brew coffee in a teapot."/>
-	```
+```
+<input placeholder="I'm a teapot" data-fb-ph-title-use="false"
+	title="You've attempted to brew coffee in a teapot."/>
+```
 
-	will result in:
+will result in:
 
-	```
-	<input class="placeholder"
-		title="You've attempted to brew coffee in a teapot"><br />
-	<span class="form-placeholder">I'm a teapot</span>
-	```
+```
+<input class="placeholder"
+	title="You've attempted to brew coffee in a teapot"><br />
+<span class="form-placeholder">I'm a teapot</span>
+```
 
-	if the browser doesn't support `placeholder`
+if the browser doesn't support `placeholder`
 
-	If you want to use the title, you may either omit `data-fb-ph-title-use`
-	or specify `data-fb-ph-title-use="true|1"`.
+If you want to use the title, you may either omit `data-fb-ph-title-use`
+or specify `data-fb-ph-title-use="true|1"`.
 
-	**Note:** If "title-use" is set to false, none of the title-related attributes
-	get used at all. You can specify them, but they will simply not be used.
+**Note:** If "title-use" is set to false, none of the title-related attributes
+get used at all. You can specify them, but they will simply not be used.
 ##### **"-title-replace"** - should I replace the existing title attribute, if it exists, or append to it?
 
-	In the event that an element which already has a title is detected, the default functionality is
-	`data-fb-ph-title-replace="false"`, which will append the placeholder text to the existing `title`
-	attribute, in parentheses.
+In the event that an element which already has a title is detected, the default functionality is
+`data-fb-ph-title-replace="false"`, which will append the placeholder text to the existing `title`
+attribute, in parentheses.
 
-	`data-fb-ph-title-replace="true|1"` will replace the form element's title instead of appending it in parantheses.
+`data-fb-ph-title-replace="true|1"` will replace the form element's title instead of appending it in parantheses.
 
-	E.g.:
+E.g.:
 
-	```
-	<input placeholder="I'm a teapot" data-fb-ph-title-replace="true"
-		title="You've attempted to brew coffee in a teapot."/>
-	```
+```
+<input placeholder="I'm a teapot" data-fb-ph-title-replace="true"
+	title="You've attempted to brew coffee in a teapot."/>
+```
 
-	will result in:
+will result in:
 
-	```
-	<input class="placeholder" data-fb-ph-title-replace="true"
-		title="I'm a teapot">
-	```
+```
+<input class="placeholder" data-fb-ph-title-replace="true"
+	title="I'm a teapot">
+```
 
 ####Adding the placeholder as a description in a seperate DOM element:
 
