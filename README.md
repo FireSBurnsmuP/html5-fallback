@@ -15,7 +15,6 @@ In its simplest form, you can just:
 3. You're done!
 
   * *If you want, you can also:*
-
 4. (optional) Download the `main.css` file into your web application's directory structure
 5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
 6. (optional) Customize the classes therein to better fit your site's styling.
@@ -37,7 +36,6 @@ Attributes currently planned:
 * `placeholder` attribute handling:
 	* adding the placeholder to the element's `title` attribute:
 		* `data-fb-ph-title-use="false|0"` disables this functionality altogether.
-
 			E.g.:
 
 			```<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-use="false"/>```
@@ -61,20 +59,20 @@ Attributes currently planned:
 	* adding the placeholder as a description in a seperate DOM element:
 			* `data-fb-ph-desc-use="false|0"` will force no addition of a placeholder-based description.
 
-			E.g.:
+				E.g.:
 
-			```<input placeholder="I'm a teapot" data-fb-desc-use="false"/>`
+				```<input placeholder="I'm a teapot" data-fb-desc-use="false"/>`
 
-			will result in:
+				will result in:
 
-			```<input class="placeholder" title="I'm a teapot">```
+				```<input class="placeholder" title="I'm a teapot">```
 
-			with no additional elements added to the dom.
+				with no additional elements added to the dom.
 			
 		* `data-fb-ph-desc-format` is used to specify what type of DOM-element to put it in
 
-			###Currently Supported Values:
-				* **"span"** (default)
+			####Currently Supported Values:
+			* **"span"** (default)
 
 				E.g.:
 
@@ -87,58 +85,58 @@ Attributes currently planned:
 
 				if the browser doesn't support `placeholder`.
 
-				* **"label"**
-					* **Note:** make sure your form element has an id or name attribute,
-						so the label can have it's `for` attribute set properly.
-				* **"div"**
-				* **"p"**
-				* **"tr"**
-					* **Note:** this probably won't behave the way you want right now.
-						I didn't take the time to devise a way of determining _where_ in
-						the table you want it, or how many columns it should span, etc.
+			* **"label"**
+				* **Note:** make sure your form element has an id or name attribute,
+					so the label can have it's `for` attribute set properly.
+			* **"div"**
+			* **"p"**
+			* **"tr"**
+				* **Note:** this probably won't behave the way you want right now.
+					I didn't take the time to devise a way of determining _where_ in
+					the table you want it, or how many columns it should span, etc.
 
-						You probably want to use **"td"** instead, and just adjust your
-						table to possibly have one more cell per row.
+					You probably want to use **"td"** instead, and just adjust your
+					table to possibly have one more cell per row.
 
-						I may fix this later on, but it's not high on my priority list.
-				* **"td"**
+					I may fix this later on, but it's not high on my priority list.
+			* **"td"**
 
-			###Note:
-				* All of these objects get the class ".form-placeholder" added to them.
-				* I may change the implementation so that any type of element is supported in the future,
-					but that isn't high on my priority list. This list of elements will likely be all I ever need.
+			####Note:
+			* All of these objects get the class ".form-placeholder" added to them.
+			* I may change the implementation so that any type of element is supported in the future,
+				but that isn't high on my priority list. This list of elements will likely be all I ever need.
 
-					Feel free to ask me about it, though, if you want the functionality added sooner.
-					Or, of course, you could fork the repo and do it yourself, and just submit the pull request
-					when you're done ;) I'd appreciate that, as well.
+				Feel free to ask me about it, though, if you want the functionality added sooner.
+				Or, of course, you could fork the repo and do it yourself, and just submit the pull request
+				when you're done ;) I'd appreciate that, as well.
 
 		* `data-fb-ph-desc-location` is used to configure where to put it
-			###Currently Supported Values:
-				* **"above"** - Display the created element above this one, on a seperate line.
-					* appends a `<br />` after the created element to ensure
-						that it is above the form element.
-					* designed for inline-elements (like `<label>` and `<span>`)
-					* gets treated like **"before"** for block-level elements (see Note below).
-				* **"before"** - Display the created element before this one, inline.
-					* the created element is inserted directly before the form element.
-				* **"after"** - Display the created element after this one, inline.
-					* the created element is inserted directly after the form element.
-				* **"below"** (default) - Display the created element below this one, on a seperate line.
-					* prepends a `<br />` before the created element to ensure
-						that it is below the form element.
-					* designed for inline-elements (like `<label>` and `<span>`)
-					* gets treated like **"after"** for block-level elements (see Note below).
-			###Note:
-				* block-level elements (`<div>`, `<p>`), and table-elements (`<tr>`, `<td>`)
-					specified with `data-fb-ph-desc-format` can only be displayed 
-					with `data-fb-ph-desc-location="after|before"`.
+			####Currently Supported Values:
+			* **"above"** - Display the created element above this one, on a seperate line.
+				* appends a `<br />` after the created element to ensure
+					that it is above the form element.
+				* designed for inline-elements (like `<label>` and `<span>`)
+				* gets treated like **"before"** for block-level elements (see Note below).
+			* **"before"** - Display the created element before this one, inline.
+				* the created element is inserted directly before the form element.
+			* **"after"** - Display the created element after this one, inline.
+				* the created element is inserted directly after the form element.
+			* **"below"** (default) - Display the created element below this one, on a seperate line.
+				* prepends a `<br />` before the created element to ensure
+					that it is below the form element.
+				* designed for inline-elements (like `<label>` and `<span>`)
+				* gets treated like **"after"** for block-level elements (see Note below).
+			####Note:
+			* block-level elements (`<div>`, `<p>`), and table-elements (`<tr>`, `<td>`)
+				specified with `data-fb-ph-desc-format` can only be displayed 
+				with `data-fb-ph-desc-location="after|before"`.
 
-					I only added the extra `<br />` capability for inline-elements,
-					as using styling is a better approach to doing this with block-elements.
+				I only added the extra `<br />` capability for inline-elements,
+				as using styling is a better approach to doing this with block-elements.
 
-					Values are converted as follows:
-					* 'above' => 'before' 
-					* 'below' => 'after'
+				Values are converted as follows:
+				* 'above' => 'before' 
+				* 'below' => 'after'
 
 I plan to keep developing this as I need it, but feel free to use it as you see fit.
 I'll figure out a license later, right now I'll get straight to coding.

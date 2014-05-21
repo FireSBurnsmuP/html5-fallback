@@ -193,7 +193,7 @@
 				 * TODO there's probably a more elegant way of doing this, frankly.
 				 */
 
-				var format = self.data('fb-ph-format');
+				var format = self.data('fb-ph-desc-format');
 				if(format === undefined)
 				{
 					format = 'span';
