@@ -61,14 +61,14 @@ information.
 
 E.g.:
 
-```
+```HTML
 <input placeholder="I'm a teapot" data-fb-ph-title-use="false"
 	title="You've attempted to brew coffee in a teapot."/>
 ```
 
 will result in:
 
-```
+```HTML
 <input class="placeholder"
 	title="You've attempted to brew coffee in a teapot"><br />
 <span class="form-placeholder">I'm a teapot</span>
@@ -91,14 +91,14 @@ attribute, in parentheses.
 
 E.g.:
 
-```
+```HTML
 <input placeholder="I'm a teapot" data-fb-ph-title-replace="true"
 	title="You've attempted to brew coffee in a teapot."/>
 ```
 
 will result in:
 
-```
+```HTML
 <input class="placeholder" data-fb-ph-title-replace="true"
 	title="I'm a teapot">
 ```
@@ -114,13 +114,13 @@ element to the DOM which contains the placeholder's text information.
 
 E.g.:
 
-```
+```HTML
 <input placeholder="I'm a teapot" data-fb-ph-desc-use="false"/>
 ```
 
 will result in:
 
-```
+```HTML
 <input class="placeholder" title="I'm a teapot" data-fb-ph-desc-use="false">
 ```
 
@@ -135,14 +135,14 @@ with no additional elements added to the dom.
 
 	E.g.:
 
-	```
+	```HTML
 	<input placeholder="I'm a teapot"
 		title="You've attempted to brew coffee in a teapot."/>
 	```
 
 	will result in:
 
-	```
+	```HTML
 	<input class="placeholder"
 		title="You've attempted to brew coffee in a teapot"><br />
 	<span class="form-placeholder">I'm a teapot</span>
@@ -153,14 +153,14 @@ with no additional elements added to the dom.
 
 	E.g.:
 
-	```
+	```HTML
 	<input id="inputID" placeholder="I'm a teapot"
 		data-fb-ph-desc-format="label"/>
 	```
 
 	will result in:
 
-	```
+	```HTML
 	<input id="inputID" class="placeholder" title="I'm a teapot"
 		 data-fb-ph-desc-format="label"><br />
 	<label for="inputID" class="form-placeholder">I'm a teapot</label>
@@ -174,13 +174,13 @@ with no additional elements added to the dom.
 
 	E.g.:
 
-	```
+	```HTML
 	<input placeholder="I'm a teapot" data-fb-ph-desc-format="div"/>
 	```
 
 	will result in:
 
-	```
+	```HTML
 	<input class="placeholder" title="I'm a teapot" data-fb-ph-desc-format="div">
 	<div class="form-placeholder">I'm a teapot</div>
 	```
@@ -190,14 +190,14 @@ with no additional elements added to the dom.
 
 	E.g.:
 
-	```
+	```HTML
 	<input placeholder="I'm a teapot" data-fb-ph-desc-format="p"
 		title="You've attempted to brew coffee in a teapot." />
 	```
 
 	will result in:
 
-	```
+	```HTML
 	<input class="placeholder"
 		title="You've attempted to brew coffee in a teapot (I'm a teapot)">
 	<p class="form-placeholder">I'm a teapot</p>
@@ -208,7 +208,7 @@ with no additional elements added to the dom.
 
 	E.g.:
 
-	```
+	```HTML
 	<table>
 		<tr>
 			<td>
@@ -221,7 +221,7 @@ with no additional elements added to the dom.
 
 	will result in:
 
-	```
+	```HTML
 	<table>
 		<tr>
 			<td>
@@ -251,7 +251,7 @@ with no additional elements added to the dom.
 
 	E.g.:
 
-	```
+	```HTML
 	<table>
 		<tr>
 			<td>
@@ -264,7 +264,7 @@ with no additional elements added to the dom.
 
 	will result in:
 
-	```
+	```HTML
 	<table>
 		<tr>
 			<td>
