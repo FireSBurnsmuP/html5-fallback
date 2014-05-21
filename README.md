@@ -27,7 +27,7 @@ In its simplest form, you can just:
 2. Add `<script src="/path/to/js/html5-fallback.js"></script>` in your documents' `<head>`s
 3. You're done!
 
-   * *If you want, you can also:*
+_If you want,_ you can also:
 4. (optional) Download the `main.css` file into your web application's directory structure
 5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
 6. (optional) Customize the classes therein to better fit your site's styling.
