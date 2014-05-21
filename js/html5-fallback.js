@@ -24,7 +24,7 @@
 (function ($) {
 	$(function(){
 		// set to true to test on modern browsers
-		var testing = true;
+		var testing = false;
 
 		// feature detect
 		var supportsRequired = 'required' in document.createElement('input');
