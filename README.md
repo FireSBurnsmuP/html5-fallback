@@ -7,18 +7,6 @@ but possibly with other additions as I find them necessary in other projects.
 
 This project contains a robust HTML5 attribute fallback system, using client-side jQuery scripting.
 
-##How do I get started?
-In its simplest form, you can just:
-
-1. Download the `html5-fallback.js` script into your web application's directory structure
-2. Add `<script src="/path/to/js/html5-fallback.js"></script>` in your documents' `<head>`s
-3. You're done!
-
-  * *If you want, you can also:*
-4. (optional) Download the `main.css` file into your web application's directory structure
-5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
-6. (optional) Customize the classes therein to better fit your site's styling.
-
 ###Currently supported attributes:
 * `required` attribute, with client-side validation and the addition of required messages next to required fields.
 	* this is still largely code from
@@ -31,6 +19,18 @@ In its simplest form, you can just:
 * No additional attributes currently planned, but I might think of something.
 	Feel free to contact me (I'm on GH pretty frequently) if you have ideas/requests.
 	No guarantees on quick implementations, but I can guarantee a quick response. ^_^
+
+##How do I get started?
+In its simplest form, you can just:
+
+1. Download the `html5-fallback.js` script into your web application's directory structure
+2. Add `<script src="/path/to/js/html5-fallback.js"></script>` in your documents' `<head>`s
+3. You're done!
+
+  * *If you want, you can also:*
+4. (optional) Download the `main.css` file into your web application's directory structure
+5. (optional) Add `<link href="/path/to/css/main.css" rel="stylesheet">` in your documents' `<head>`s
+6. (optional) Customize the classes therein to better fit your site's styling.
 
 ##Advanced Attributes and Configurations
 I make use of the custom html5 'data-' attribute system, which is x-browser compatable,
@@ -56,13 +56,15 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 			E.g.:
 
 			```
-			<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-use="false"/>
+			<input placeholder="I'm a teapot" data-fb-title-use="false"
+				title="You've attempted to brew coffee in a teapot."/>
 			```
 
 			will result in:
 
 			```
-			<input class="placeholder" title="You've attempted to brew coffee in a teapot"><br />
+			<input class="placeholder"
+				title="You've attempted to brew coffee in a teapot"><br />
 			<span class="form-placeholder">I'm a teapot</span>
 			```
 
@@ -75,7 +77,8 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 			E.g.:
 
 			```
-			<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-title-replace="true"/>
+			<input placeholder="I'm a teapot" data-fb-title-replace="true"
+				title="You've attempted to brew coffee in a teapot."/>
 			```
 
 			will result in:
@@ -109,13 +112,15 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				E.g.:
 
 				```
-				<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot."/>
+				<input placeholder="I'm a teapot"
+					title="You've attempted to brew coffee in a teapot."/>
 				```
 
 				will result in:
 
 				```
-				<input class="placeholder" title="You've attempted to brew coffee in a teapot"><br />
+				<input class="placeholder"
+					title="You've attempted to brew coffee in a teapot"><br />
 				<span class="form-placeholder">I'm a teapot</span>
 				```
 
@@ -125,13 +130,15 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				E.g.:
 
 				```
-				<input id="inputID" placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="label"/>
+				<input id="inputID" placeholder="I'm a teapot"
+					data-fb-ph-desc-format="label"/>
 				```
 
 				will result in:
 
 				```
-				<input id="inputID" class="placeholder" title="You've attempted to brew coffee in a teapot (I'm a teapot)"><br />
+				<input id="inputID" class="placeholder" title="I'm a teapot"
+					 data-fb-ph-desc-format="label"><br />
 				<label for="inputID" class="form-placeholder">I'm a teapot</label>
 				```
 
@@ -144,13 +151,13 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				E.g.:
 
 				```
-				<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="div"/>
+				<input placeholder="I'm a teapot" data-fb-ph-desc-format="div"/>
 				```
 
 				will result in:
 
 				```
-				<input class="placeholder" title="You've attempted to brew coffee in a teapot (I'm a teapot)">
+				<input class="placeholder" title="I'm a teapot" data-fb-ph-desc-format="div">
 				<div class="form-placeholder">I'm a teapot</div>
 				```
 
@@ -160,13 +167,15 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				E.g.:
 
 				```
-				<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="p"/>
+				<input placeholder="I'm a teapot" data-fb-ph-desc-format="p"
+					title="You've attempted to brew coffee in a teapot." />
 				```
 
 				will result in:
 
 				```
-				<input class="placeholder" title="You've attempted to brew coffee in a teapot (I'm a teapot)">
+				<input class="placeholder"
+					title="You've attempted to brew coffee in a teapot (I'm a teapot)">
 				<p class="form-placeholder">I'm a teapot</p>
 				```
 
@@ -179,7 +188,8 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				<table>
 					<tr>
 						<td>
-							<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="tr"/>
+							<input placeholder="I'm a teapot" data-fb-ph-desc-format="tr"
+								title="You've attempted to brew coffee in a teapot." />
 						</td>
 					<tr>
 				</table>
@@ -191,7 +201,8 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				<table>
 					<tr>
 						<td>
-							<input class="placeholder" title="You've attempted to brew coffee in a teapot. (I'm a teapot)" data-fb-ph-desc-format="tr"/>
+							<input class="placeholder" data-fb-ph-desc-format="tr"
+								title="You've attempted to brew coffee in a teapot. (I'm a teapot)" />
 						</td>
 					<tr>
 					<tr class="form-placeholder">
@@ -220,7 +231,8 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				<table>
 					<tr>
 						<td>
-							<input placeholder="I'm a teapot" title="You've attempted to brew coffee in a teapot." data-fb-ph-desc-format="td"/>
+							<input placeholder="I'm a teapot" data-fb-ph-desc-format="td"
+								title="You've attempted to brew coffee in a teapot." />
 						</td>
 					<tr>
 				</table>
@@ -232,7 +244,8 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				<table>
 					<tr>
 						<td>
-							<input class="placeholder" title="You've attempted to brew coffee in a teapot. (I'm a teapot)" data-fb-ph-desc-format="td"/>
+							<input class="placeholder" data-fb-ph-desc-format="td"
+								title="You've attempted to brew coffee in a teapot. (I'm a teapot)"/>
 						</td>
 						<td class="form-placeholder">
 							I'm a teapot
@@ -280,5 +293,13 @@ This (obviously) stands for 'data-fallback' and should be easy enough to remembe
 				* 'above' => 'before' 
 				* 'below' => 'after'
 
+###Development:
 I plan to keep developing this as I need it, but feel free to use it as you see fit.
-I'll figure out a license later, right now I'll get straight to coding.
+I'll figure out a license later, for now just make sure you leave a link or url
+to this project if you're using it, and let that be good enough.
+
+###Contributing:
+I only ask that you properly keep track of your changes in the ChangeLog,
+and that you use jshint with the default options to validate your code.
+Provided those things, go ahead and make a fork and shoot me a PR when you're done.
+I'd love to see what people can do with something like this.
